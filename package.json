@@ -1,11 +1,13 @@
 {
-  "name": "helloworld-site",
+  "name": "hello-world-wang",
   "version": "1.0.0",
-  "description": "我的第一个AI开发的网站",
-  "main": "server.js",
+  "private": true,
+  "description": "王亚豪的第一个 AI 开发的 Hello World 网站",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
-  "dependencies": {},
-  "license": "MIT"
+  "engines": {
+    "node": ">=18"
+  }
 }

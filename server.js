@@ -1,45 +1,50 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+const http = require("node:http");
+const fs = require("node:fs");
+const path = require("node:path");
+const timeHandler = require("./api/time");
 
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
+const ROOT = __dirname;
 
-// 你的名字 —— 把这里改成你自己的名字
-const YOUR_NAME = "豆包";
+const STATIC_FILES = {
+  "/": { file: "index.html", type: "text/html; charset=utf-8" },
+  "/index.html": { file: "index.html", type: "text/html; charset=utf-8" },
+  "/styles.css": { file: "styles.css", type: "text/css; charset=utf-8" },
+  "/script.js": { file: "script.js", type: "text/javascript; charset=utf-8" }
+};
 
 const server = http.createServer((req, res) => {
-  // 处理首页请求
-  if (req.url === '/' || req.url === '/index.html') {
-    fs.readFile(path.join(__dirname, 'public', 'index.html'), 'utf8', (err, data) => {
-      if (err) {
-        res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
-        res.end('服务器内部错误');
-        return;
-      }
-      // 把模板中的 {{NAME}} 和 {{SERVER_TIME}} 替换为实际值
-      const now = new Date();
-      const formattedTime = now.toLocaleString('zh-CN', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      });
-      const html = data
-        .replace(/{{NAME}}/g, YOUR_NAME)
-        .replace(/{{SERVER_TIME}}/g, formattedTime);
+  const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
 
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(html);
-    });
-  } else {
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('404 - 页面不存在');
+  if (url.pathname === "/api/time") {
+    timeHandler(req, res);
+    return;
   }
+
+  const asset = STATIC_FILES[url.pathname];
+
+  if (!asset) {
+    res.statusCode = 404;
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.end("404 - 页面不存在");
+    return;
+  }
+
+  fs.readFile(path.join(ROOT, asset.file), (error, content) => {
+    if (error) {
+      res.statusCode = 500;
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+      res.end("500 - 无法读取页面文件");
+      return;
+    }
+
+    res.statusCode = 200;
+    res.setHeader("Content-Type", asset.type);
+    res.setHeader("Cache-Control", "no-cache");
+    res.end(content);
+  });
 });
 
 server.listen(PORT, () => {
-  console.log(`服务器已启动！请在浏览器访问: http://localhost:${PORT}`);
+  console.log(`Hello World 网站已启动：http://localhost:${PORT}`);
 });

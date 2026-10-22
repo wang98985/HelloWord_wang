@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070a12" />
+    <meta
+      name="description"
+      content="Hello World！我是王亚豪，这是我的第一个 AI 开发的网站。"
+    />
+    <title>Hello World · 王亚豪的第一个 AI 网站</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true">
+      <span class="glow glow-cyan"></span>
+      <span class="glow glow-violet"></span>
+    </div>
+    <div class="grid-overlay" aria-hidden="true"></div>
+
+    <main class="page">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="王亚豪 AI Lab 首页">
+          <span class="brand-mark">W</span>
+          <span class="brand-copy">
+            <span>WANG / AI LAB</span>
+            <small>FIRST RELEASE</small>
+          </span>
+        </a>
+
+        <div class="status-chip" aria-label="网站运行状态：在线">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>ONLINE</span>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="eyebrow-line" aria-hidden="true"></span>
+            BUILD 001 · POWERED BY AI
+          </p>
+
+          <h1 class="hero-title">
+            <span class="title-line">Hello</span>
+            <span class="title-line title-gradient">World！</span>
+          </h1>
+
+          <p class="intro">
+            我是<strong>【王亚豪】</strong>，我的第一个AI开发的网站
+          </p>
+
+          <div class="tech-list" aria-label="技术栈">
+            <span class="tech-item">Node.js</span>
+            <span class="tech-item">原生 HTTP</span>
+            <span class="tech-item">Vercel</span>
+          </div>
+        </div>
+
+        <aside class="time-card" aria-labelledby="server-time-label">
+          <div class="time-card-head">
+            <div>
+              <p class="time-kicker" id="server-time-label">SERVER TIME</p>
+              <p class="time-zone">服务器时间 · Asia/Shanghai (UTC+8)</p>
+            </div>
+            <div class="live-chip" id="sync-status">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span id="sync-label">同步中</span>
+            </div>
+          </div>
+
+          <div class="clock">
+            <time class="clock-time" id="server-time" aria-live="off">--:--:--</time>
+            <p class="clock-date" id="server-date">正在连接服务器...</p>
+          </div>
+
+          <div class="time-card-foot">
+            <span class="mono-label">LIVE FROM SERVER</span>
+            <span class="signal" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </span>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <p>Designed &amp; built with AI</p>
+        <p class="footer-meta">
+          <span id="current-year">2026</span>
+          <span class="footer-separator" aria-hidden="true"></span>
+          WANG YAH AO
+        </p>
+      </footer>
+    </main>
+
+    <noscript>
+      <p class="noscript">请启用 JavaScript，以显示实时服务器时间。</p>
+    </noscript>
+  </body>
+</html>
