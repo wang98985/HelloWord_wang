@@ -33,7 +33,7 @@ function renderServerTime() {
 
 function setSyncState(isOnline) {
   syncStatus.classList.toggle("is-reconnecting", !isOnline);
-  syncLabel.textContent = isOnline ? "同步中" : "重连中";
+  syncLabel.textContent = isOnline ? "已同步" : "重连中";
 }
 
 async function syncTime() {

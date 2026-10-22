@@ -1,0 +1,6 @@
+server.js
+package.json
+.git
+.vercel
+.uploads
+npm-debug.log*
